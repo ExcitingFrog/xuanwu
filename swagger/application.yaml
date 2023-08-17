@@ -1,0 +1,54 @@
+swagger: "2.0"
+info:
+  version: 1.0.0
+  title: XuanWuService
+basePath: /xuanwu/v1
+schemes:
+  - http
+consumes:
+  - application/json
+produces:
+  - application/json
+paths:
+  /hello:
+    get:
+      summary: Hello
+      description: Hello
+      operationId: hello
+      responses:
+        200:
+          description: Hello
+          schema:
+            type: string
+        400:
+          description: BadRequest
+          schema:
+            $ref: '#/definitions/ErrorResponse'
+definitions:
+  ErrorResponse:
+    type: object
+    properties:
+      code:
+        type: integer
+      message:
+        type: string
+  Pagination:
+    type: object
+    required:
+      - limit
+      - offset
+      - total
+    properties:
+      limit:
+        type: integer
+      offset:
+        type: integer
+      total:
+        type: integer
+  Meta:
+    type: object
+    properties:
+      created_at:
+        type: integer
+      updated_at:
+        type: integer
