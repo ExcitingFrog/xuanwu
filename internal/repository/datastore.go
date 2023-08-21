@@ -1,6 +1,6 @@
 package repository
 
-import "github.com/ExcitingFrog/xuanwu/pkg/mongodb"
+import "github.com/ExcitingFrog/go-core-common/mongodb"
 
 type IRepository interface {
 	IHello

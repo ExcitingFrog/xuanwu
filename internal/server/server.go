@@ -3,12 +3,12 @@ package server
 import (
 	"log"
 
+	"github.com/ExcitingFrog/go-core-common/jaeger"
+	"github.com/ExcitingFrog/go-core-common/mongodb"
+	"github.com/ExcitingFrog/go-core-common/provider"
 	"github.com/ExcitingFrog/xuanwu/configs"
 	"github.com/ExcitingFrog/xuanwu/internal/repository"
 	"github.com/ExcitingFrog/xuanwu/internal/services"
-	"github.com/ExcitingFrog/xuanwu/pkg/jaeger"
-	"github.com/ExcitingFrog/xuanwu/pkg/mongodb"
-	"github.com/ExcitingFrog/xuanwu/pkg/provider"
 	"github.com/ExcitingFrog/xuanwu/swagger/gen/server"
 	"github.com/ExcitingFrog/xuanwu/swagger/gen/server/operations"
 	"github.com/go-openapi/loads"

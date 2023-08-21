@@ -1,7 +1,7 @@
 package controllers
 
 import (
-	"github.com/ExcitingFrog/xuanwu/pkg/jaeger"
+	"github.com/ExcitingFrog/go-core-common/jaeger"
 	"github.com/ExcitingFrog/xuanwu/swagger/gen/models"
 	"github.com/ExcitingFrog/xuanwu/swagger/gen/server/operations"
 	"github.com/go-openapi/runtime/middleware"

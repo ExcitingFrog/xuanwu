@@ -3,6 +3,7 @@ module github.com/ExcitingFrog/xuanwu
 go 1.20
 
 require (
+	github.com/ExcitingFrog/go-core-common v0.0.0-20230821091753-959003badb7e
 	github.com/go-openapi/errors v0.20.4
 	github.com/go-openapi/loads v0.21.2
 	github.com/go-openapi/runtime v0.26.0
@@ -12,13 +13,6 @@ require (
 	github.com/go-openapi/validate v0.22.1
 	github.com/jessevdk/go-flags v1.5.0
 	github.com/stretchr/testify v1.8.3
-	github.com/webws/go-moda v0.0.0-20230531152430-7721e44a5093
-	go.mongodb.org/mongo-driver v1.12.1
-	go.opentelemetry.io/contrib/propagators/b3 v1.17.0
-	go.opentelemetry.io/otel v1.16.0
-	go.opentelemetry.io/otel/exporters/jaeger v1.16.0
-	go.opentelemetry.io/otel/sdk v1.16.0
-	go.opentelemetry.io/otel/trace v1.16.0
 	golang.org/x/net v0.14.0
 )
 
@@ -34,10 +28,13 @@ require (
 	github.com/spf13/jwalterweatherman v1.1.0 // indirect
 	github.com/spf13/pflag v1.0.5 // indirect
 	github.com/subosito/gotenv v1.4.2 // indirect
+	go.mongodb.org/mongo-driver v1.12.1 // indirect
+	go.opentelemetry.io/contrib/propagators/b3 v1.17.0 // indirect
+	go.opentelemetry.io/otel v1.16.0 // indirect
+	go.opentelemetry.io/otel/exporters/jaeger v1.16.0 // indirect
 	go.opentelemetry.io/otel/metric v1.16.0 // indirect
-	go.uber.org/atomic v1.9.0 // indirect
-	go.uber.org/multierr v1.8.0 // indirect
-	go.uber.org/zap v1.24.0 // indirect
+	go.opentelemetry.io/otel/sdk v1.16.0 // indirect
+	go.opentelemetry.io/otel/trace v1.16.0 // indirect
 	gopkg.in/ini.v1 v1.67.0 // indirect
 )
 

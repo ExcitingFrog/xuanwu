@@ -3,8 +3,8 @@ package services
 import (
 	"context"
 
+	"github.com/ExcitingFrog/go-core-common/jaeger"
 	"github.com/ExcitingFrog/xuanwu/internal/schema"
-	"github.com/ExcitingFrog/xuanwu/pkg/jaeger"
 	uuid "github.com/satori/go.uuid"
 )
 

@@ -1,11 +1,11 @@
 package main
 
 import (
+	"github.com/ExcitingFrog/go-core-common/jaeger"
+	"github.com/ExcitingFrog/go-core-common/mongodb"
+	"github.com/ExcitingFrog/go-core-common/pprof"
+	"github.com/ExcitingFrog/go-core-common/provider"
 	"github.com/ExcitingFrog/xuanwu/internal/server"
-	"github.com/ExcitingFrog/xuanwu/pkg/jaeger"
-	"github.com/ExcitingFrog/xuanwu/pkg/mongodb"
-	"github.com/ExcitingFrog/xuanwu/pkg/pprof"
-	"github.com/ExcitingFrog/xuanwu/pkg/provider"
 )
 
 func main() {
