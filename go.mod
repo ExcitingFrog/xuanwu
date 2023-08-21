@@ -12,12 +12,20 @@ require (
 	github.com/go-openapi/validate v0.22.1
 	github.com/jessevdk/go-flags v1.5.0
 	github.com/stretchr/testify v1.8.3
+	github.com/webws/go-moda v0.0.0-20230531152430-7721e44a5093
 	go.mongodb.org/mongo-driver v1.12.1
+	go.opentelemetry.io/contrib/propagators/b3 v1.17.0
+	go.opentelemetry.io/otel v1.16.0
+	go.opentelemetry.io/otel/exporters/jaeger v1.16.0
+	go.opentelemetry.io/otel/sdk v1.16.0
+	go.opentelemetry.io/otel/trace v1.16.0
 	golang.org/x/net v0.14.0
 )
 
 require (
 	github.com/fsnotify/fsnotify v1.6.0 // indirect
+	github.com/go-logr/logr v1.2.4 // indirect
+	github.com/go-logr/stdr v1.2.2 // indirect
 	github.com/hashicorp/hcl v1.0.0 // indirect
 	github.com/magiconair/properties v1.8.7 // indirect
 	github.com/pelletier/go-toml/v2 v2.0.8 // indirect
@@ -26,6 +34,10 @@ require (
 	github.com/spf13/jwalterweatherman v1.1.0 // indirect
 	github.com/spf13/pflag v1.0.5 // indirect
 	github.com/subosito/gotenv v1.4.2 // indirect
+	go.opentelemetry.io/otel/metric v1.16.0 // indirect
+	go.uber.org/atomic v1.9.0 // indirect
+	go.uber.org/multierr v1.8.0 // indirect
+	go.uber.org/zap v1.24.0 // indirect
 	gopkg.in/ini.v1 v1.67.0 // indirect
 )
 
@@ -36,7 +48,7 @@ require (
 	github.com/go-openapi/analysis v0.21.4 // indirect
 	github.com/go-openapi/jsonpointer v0.19.5 // indirect
 	github.com/go-openapi/jsonreference v0.20.0 // indirect
-	github.com/golang/snappy v0.0.1 // indirect
+	github.com/golang/snappy v0.0.3 // indirect
 	github.com/josharian/intern v1.0.0 // indirect
 	github.com/klauspost/compress v1.13.6 // indirect
 	github.com/mailru/easyjson v0.7.7 // indirect

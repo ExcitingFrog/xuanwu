@@ -6,6 +6,7 @@ import (
 	"github.com/ExcitingFrog/xuanwu/configs"
 	"github.com/ExcitingFrog/xuanwu/internal/repository"
 	"github.com/ExcitingFrog/xuanwu/internal/services"
+	"github.com/ExcitingFrog/xuanwu/pkg/jaeger"
 	"github.com/ExcitingFrog/xuanwu/pkg/mongodb"
 	"github.com/ExcitingFrog/xuanwu/pkg/provider"
 	"github.com/ExcitingFrog/xuanwu/swagger/gen/server"
@@ -17,11 +18,13 @@ type Server struct {
 	provider.IProvider
 	server  *server.Server
 	mongodb *mongodb.MongoDB
+	jaeger  *jaeger.Jaeger
 }
 
-func NewServer(mongodb *mongodb.MongoDB) *Server {
+func NewServer(mongodb *mongodb.MongoDB, jaeger *jaeger.Jaeger) *Server {
 	return &Server{
 		mongodb: mongodb,
+		jaeger:  jaeger,
 	}
 }
 

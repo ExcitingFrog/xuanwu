@@ -2,7 +2,9 @@ package main
 
 import (
 	"github.com/ExcitingFrog/xuanwu/internal/server"
+	"github.com/ExcitingFrog/xuanwu/pkg/jaeger"
 	"github.com/ExcitingFrog/xuanwu/pkg/mongodb"
+	"github.com/ExcitingFrog/xuanwu/pkg/pprof"
 	"github.com/ExcitingFrog/xuanwu/pkg/provider"
 )
 
@@ -16,11 +18,15 @@ func main() {
 	// init opentelemetry
 
 	// init pprof
+	pprofProvider := pprof.NewPprof(nil)
+	stack.AddProvider(pprofProvider)
 
-	// init probe
+	// init jaeger
+	jaegerProvider := jaeger.NewJaeger(nil)
+	stack.AddProvider(jaegerProvider)
 
 	// init service
-	serverProvider := server.NewServer(mongodbProvider)
+	serverProvider := server.NewServer(mongodbProvider, jaegerProvider)
 	stack.AddProvider(serverProvider)
 
 	stack.Run()

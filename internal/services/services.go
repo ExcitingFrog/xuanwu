@@ -1,6 +1,8 @@
 package services
 
-import "github.com/ExcitingFrog/xuanwu/internal/repository"
+import (
+	"github.com/ExcitingFrog/xuanwu/internal/repository"
+)
 
 type IService interface {
 	IHello

@@ -1,6 +1,8 @@
 package controllers
 
-import "github.com/ExcitingFrog/xuanwu/internal/services"
+import (
+	"github.com/ExcitingFrog/xuanwu/internal/services"
+)
 
 type Controllers struct {
 	service services.IService
