@@ -24,6 +24,20 @@ paths:
           description: BadRequest
           schema:
             $ref: '#/definitions/ErrorResponse'
+  /hello/trace:
+    get:
+      summary: HelloTrace
+      description: Hello
+      operationId: helloTrace
+      responses:
+        200:
+          description: Hello
+          schema:
+            type: string
+        400:
+          description: BadRequest
+          schema:
+            $ref: '#/definitions/ErrorResponse'
 definitions:
   ErrorResponse:
     type: object

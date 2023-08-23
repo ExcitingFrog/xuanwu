@@ -5,7 +5,7 @@ RUN apk add --no-cache git alpine-sdk
 ADD . /go/src/workspace
 WORKDIR /go/src/workspace
 
-RUN make swagger build release
+RUN make build
 
 # use a minimal alpine image
 FROM alpine:3.17
@@ -14,7 +14,6 @@ FROM alpine:3.17
 WORKDIR /go/bin
 
 COPY --from=builder /go/src/workspace/main .
-COPY --from=builder /go/src/workspace/scripts ./scripts
 
 USER 1001
 # run the binary

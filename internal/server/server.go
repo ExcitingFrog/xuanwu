@@ -8,6 +8,7 @@ import (
 	"github.com/ExcitingFrog/go-core-common/provider"
 	"github.com/ExcitingFrog/xuanwu/configs"
 	"github.com/ExcitingFrog/xuanwu/internal/repository"
+	"github.com/ExcitingFrog/xuanwu/internal/resources"
 	"github.com/ExcitingFrog/xuanwu/internal/services"
 	"github.com/ExcitingFrog/xuanwu/swagger/gen/server"
 	"github.com/ExcitingFrog/xuanwu/swagger/gen/server/operations"
@@ -45,7 +46,11 @@ func (s *Server) Run() error {
 
 	repository := repository.NewRepository(s.mongodb)
 
-	xuanwuServices := services.NewService(repository)
+	xuyu, err := resources.NewXuyu()
+	if err != nil {
+		return err
+	}
+	xuanwuServices := services.NewService(repository, xuyu)
 	router := NewRouter(api, xuanwuServices)
 	router.RegisterRoutes()
 

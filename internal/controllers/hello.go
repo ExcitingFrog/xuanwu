@@ -20,3 +20,17 @@ func (c *Controllers) Hello(params operations.HelloParams) middleware.Responder 
 
 	return operations.NewHelloOK().WithPayload("Hello, world!")
 }
+
+func (c *Controllers) HelloTrace(params operations.HelloTraceParams) middleware.Responder {
+	ctx, span := jaeger.StartSpanFromContext(params.HTTPRequest.Context(), "Controller:HelloTrace")
+	defer span.End()
+
+	if err := c.service.HelloTrace(ctx); err != nil {
+		return operations.NewHelloTraceBadRequest().WithPayload(&models.ErrorResponse{
+			Code:    400,
+			Message: err.Error(),
+		})
+	}
+
+	return operations.NewHelloTraceOK().WithPayload("Hello, world!")
+}

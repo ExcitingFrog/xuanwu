@@ -15,8 +15,6 @@ func main() {
 	mongodbProvider := mongodb.NewMongoDB(nil)
 	stack.AddProvider(mongodbProvider)
 
-	// init opentelemetry
-
 	// init pprof
 	pprofProvider := pprof.NewPprof(nil)
 	stack.AddProvider(pprofProvider)

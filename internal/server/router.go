@@ -21,4 +21,5 @@ func NewRouter(swaggerAPI *operations.XuanWuServiceAPI, xuanWuService services.I
 
 func (router *Router) RegisterRoutes() {
 	router.swaggerAPI.HelloHandler = operations.HelloHandlerFunc(router.Controllers.Hello)
+	router.swaggerAPI.HelloTraceHandler = operations.HelloTraceHandlerFunc(router.Controllers.HelloTrace)
 }
