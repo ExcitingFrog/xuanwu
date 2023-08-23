@@ -17,9 +17,12 @@ func (s *Service) Hello(ctx context.Context) error {
 	ctx, span := jaeger.StartSpanFromContext(ctx, "Service:Hello")
 	defer span.End()
 
-	s.repository.SaveHello(ctx, &schema.Hello{
+	err := s.repository.SaveHello(ctx, &schema.Hello{
 		ID: uuid.NewV4().String(),
 	})
+	if err != nil {
+		return err
+	}
 
 	return nil
 }
@@ -28,11 +31,17 @@ func (s *Service) HelloTrace(ctx context.Context) error {
 	ctx, span := jaeger.StartSpanFromContext(ctx, "Service:HelloTrace")
 	defer span.End()
 
-	s.repository.SaveHello(ctx, &schema.Hello{
+	err := s.repository.SaveHello(ctx, &schema.Hello{
 		ID: uuid.NewV4().String(),
 	})
+	if err != nil {
+		return err
+	}
 
-	s.xuyu.Hello(ctx)
+	err = s.xuyu.Hello(ctx)
+	if err != nil {
+		return err
+	}
 
 	return nil
 }

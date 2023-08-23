@@ -42,9 +42,13 @@ func NewXuyu() (*Xuyu, error) {
 	return xuyu, nil
 }
 
-func (x *Xuyu) Hello(ctx context.Context) {
+func (x *Xuyu) Hello(ctx context.Context) error {
 	ctx, span := jaeger.StartSpanFromContext(ctx, "Resources:Hello")
 	defer span.End()
 
-	x.hello.Hello(ctx, &pb.HelloRequest{})
+	_, err := x.hello.Hello(ctx, &pb.HelloRequest{})
+	if err != nil {
+		return err
+	}
+	return nil
 }

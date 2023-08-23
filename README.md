@@ -3,3 +3,4 @@
 - Jaeger
 - MongoDB
 - Mocks
+- golangci-lint
