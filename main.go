@@ -2,6 +2,7 @@ package main
 
 import (
 	"github.com/ExcitingFrog/go-core-common/jaeger"
+	"github.com/ExcitingFrog/go-core-common/log"
 	"github.com/ExcitingFrog/go-core-common/mongodb"
 	"github.com/ExcitingFrog/go-core-common/pprof"
 	"github.com/ExcitingFrog/go-core-common/provider"
@@ -10,6 +11,10 @@ import (
 
 func main() {
 	stack := provider.NewProviders()
+
+	// init log
+	logProvider := log.NewLog(nil)
+	stack.AddProvider(logProvider)
 
 	// init mongodb
 	mongodbProvider := mongodb.NewMongoDB(nil)

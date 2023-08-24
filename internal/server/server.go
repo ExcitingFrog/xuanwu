@@ -1,9 +1,8 @@
 package server
 
 import (
-	"log"
-
 	"github.com/ExcitingFrog/go-core-common/jaeger"
+	"github.com/ExcitingFrog/go-core-common/log"
 	"github.com/ExcitingFrog/go-core-common/mongodb"
 	"github.com/ExcitingFrog/go-core-common/provider"
 	"github.com/ExcitingFrog/xuanwu/configs"
@@ -43,13 +42,14 @@ func (s *Server) Run() error {
 	}
 
 	api := operations.NewXuanWuServiceAPI(swaggerSpec)
-
 	repository := repository.NewRepository(s.mongodb)
 
 	xuyu, err := resources.NewXuyu()
 	if err != nil {
+		log.Logger().Error(err.Error())
 		return err
 	}
+
 	xuanwuServices := services.NewService(repository, xuyu)
 	router := NewRouter(api, xuanwuServices)
 	router.RegisterRoutes()
@@ -58,7 +58,8 @@ func (s *Server) Run() error {
 	server.Port = configs.GetConfig().Port
 
 	if err := server.Serve(); err != nil {
-		log.Fatalln(err)
+		log.Logger().Error(err.Error())
+		return err
 	}
 
 	s.server = server
