@@ -4,6 +4,7 @@ import (
 	"context"
 
 	"github.com/ExcitingFrog/go-core-common/jaeger"
+	"github.com/ExcitingFrog/go-core-common/log"
 	"github.com/ExcitingFrog/go-core-common/provider"
 	"github.com/ExcitingFrog/xuanwu/configs"
 	pb "github.com/ExcitingFrog/xuyu/proto/gen/go/proto/api"
@@ -34,6 +35,7 @@ func NewXuyu() (*Xuyu, error) {
 		grpc.WithChainStreamInterceptor(streamInterceptors...),
 	)
 	if err != nil {
+		log.Logger().Error(err.Error())
 		return nil, err
 	}
 
@@ -43,11 +45,12 @@ func NewXuyu() (*Xuyu, error) {
 }
 
 func (x *Xuyu) Hello(ctx context.Context) error {
-	ctx, span := jaeger.StartSpanFromContext(ctx, "Resources:Hello")
+	ctx, span, logger := jaeger.StartSpanAndLogFromContext(ctx, "Resources:Hello")
 	defer span.End()
 
 	_, err := x.hello.Hello(ctx, &pb.HelloRequest{})
 	if err != nil {
+		logger.Error(err.Error())
 		return err
 	}
 	return nil

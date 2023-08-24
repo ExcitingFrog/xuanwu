@@ -3,7 +3,7 @@ module github.com/ExcitingFrog/xuanwu
 go 1.20
 
 require (
-	github.com/ExcitingFrog/go-core-common v0.0.0-20230823071820-ef93ebdde081
+	github.com/ExcitingFrog/go-core-common v0.0.0-20230824031931-3df3d507b158
 	github.com/ExcitingFrog/xuyu v0.0.0-20230822095603-e1d20124de6d
 	github.com/go-openapi/errors v0.20.4
 	github.com/go-openapi/loads v0.21.2
@@ -40,6 +40,8 @@ require (
 	go.opentelemetry.io/otel/metric v1.16.0 // indirect
 	go.opentelemetry.io/otel/sdk v1.16.0 // indirect
 	go.opentelemetry.io/otel/trace v1.16.0 // indirect
+	go.uber.org/multierr v1.11.0 // indirect
+	go.uber.org/zap v1.25.0 // indirect
 	google.golang.org/genproto v0.0.0-20230706204954-ccb25ca9f130 // indirect
 	google.golang.org/genproto/googleapis/api v0.0.0-20230726155614-23370e0ffb3e // indirect
 	google.golang.org/genproto/googleapis/rpc v0.0.0-20230726155614-23370e0ffb3e // indirect

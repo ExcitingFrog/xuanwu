@@ -8,10 +8,11 @@ import (
 )
 
 func (c *Controllers) Hello(params operations.HelloParams) middleware.Responder {
-	ctx, span := jaeger.StartSpanFromContext(params.HTTPRequest.Context(), "Controller:Hello")
+	ctx, span, logger := jaeger.StartSpanAndLogFromContext(params.HTTPRequest.Context(), "Controller:Hello")
 	defer span.End()
 
 	if err := c.service.Hello(ctx); err != nil {
+		logger.Error(err.Error())
 		return operations.NewHelloBadRequest().WithPayload(&models.ErrorResponse{
 			Code:    400,
 			Message: err.Error(),
@@ -22,10 +23,11 @@ func (c *Controllers) Hello(params operations.HelloParams) middleware.Responder 
 }
 
 func (c *Controllers) HelloTrace(params operations.HelloTraceParams) middleware.Responder {
-	ctx, span := jaeger.StartSpanFromContext(params.HTTPRequest.Context(), "Controller:HelloTrace")
+	ctx, span, logger := jaeger.StartSpanAndLogFromContext(params.HTTPRequest.Context(), "Controller:HelloTrace")
 	defer span.End()
 
 	if err := c.service.HelloTrace(ctx); err != nil {
+		logger.Error(err.Error())
 		return operations.NewHelloTraceBadRequest().WithPayload(&models.ErrorResponse{
 			Code:    400,
 			Message: err.Error(),
