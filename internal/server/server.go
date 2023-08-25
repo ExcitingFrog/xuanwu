@@ -6,6 +6,7 @@ import (
 	"github.com/ExcitingFrog/go-core-common/mongodb"
 	"github.com/ExcitingFrog/go-core-common/provider"
 	"github.com/ExcitingFrog/xuanwu/configs"
+	"github.com/ExcitingFrog/xuanwu/internal/middleware"
 	"github.com/ExcitingFrog/xuanwu/internal/repository"
 	"github.com/ExcitingFrog/xuanwu/internal/resources"
 	"github.com/ExcitingFrog/xuanwu/internal/services"
@@ -35,6 +36,10 @@ func (s *Server) Close() error {
 	return nil
 }
 
+func (s *Server) Init() error {
+	return nil
+}
+
 func (s *Server) Run() error {
 	swaggerSpec, err := loads.Embedded(server.SwaggerJSON, server.FlatSwaggerJSON)
 	if err != nil {
@@ -56,6 +61,7 @@ func (s *Server) Run() error {
 
 	server := server.NewServer(api)
 	server.Port = configs.GetConfig().Port
+	server.SetHandler(middleware.SetupGlobalMiddleware(api.Serve(nil)))
 
 	if err := server.Serve(); err != nil {
 		log.Logger().Error(err.Error())
