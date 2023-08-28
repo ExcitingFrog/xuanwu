@@ -3,7 +3,7 @@ module github.com/ExcitingFrog/xuanwu
 go 1.20
 
 require (
-	github.com/ExcitingFrog/go-core-common v0.0.0-20230825073727-7ce2cb05a62f
+	github.com/ExcitingFrog/go-core-common v0.0.0-20230828071622-edc209dbc09f
 	github.com/ExcitingFrog/xuyu v0.0.0-20230822095603-e1d20124de6d
 	github.com/go-openapi/errors v0.20.4
 	github.com/go-openapi/loads v0.21.2
@@ -19,6 +19,7 @@ require (
 )
 
 require (
+	github.com/felixge/httpsnoop v1.0.3 // indirect
 	github.com/fsnotify/fsnotify v1.6.0 // indirect
 	github.com/go-logr/logr v1.2.4 // indirect
 	github.com/go-logr/stdr v1.2.2 // indirect
@@ -73,6 +74,7 @@ require (
 	github.com/xdg-go/stringprep v1.0.4 // indirect
 	github.com/youmark/pkcs8 v0.0.0-20181117223130-1be2e3e5546d // indirect
 	go.opentelemetry.io/contrib/instrumentation/google.golang.org/grpc/otelgrpc v0.42.0
+	go.opentelemetry.io/contrib/instrumentation/net/http/otelhttp v0.42.0
 	golang.org/x/crypto v0.12.0 // indirect
 	golang.org/x/sync v0.1.0 // indirect
 	golang.org/x/sys v0.11.0 // indirect

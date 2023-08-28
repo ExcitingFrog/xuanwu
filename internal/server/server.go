@@ -61,6 +61,7 @@ func (s *Server) Run() error {
 
 	server := server.NewServer(api)
 	server.Port = configs.GetConfig().Port
+
 	server.SetHandler(middleware.SetupGlobalMiddleware(api.Serve(nil)))
 
 	if err := server.Serve(); err != nil {

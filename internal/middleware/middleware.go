@@ -3,7 +3,9 @@ package middleware
 import (
 	"net/http"
 
-	"github.com/ExcitingFrog/go-core-common/jaeger"
+	"go.opentelemetry.io/otel"
+	"go.opentelemetry.io/otel/propagation"
+	"go.opentelemetry.io/otel/trace"
 )
 
 func SetupGlobalMiddleware(handler http.Handler) http.Handler {
@@ -12,12 +14,33 @@ func SetupGlobalMiddleware(handler http.Handler) http.Handler {
 	)
 }
 
-func Inject(h http.Handler) http.Handler {
-	f := func(w http.ResponseWriter, r *http.Request) {
-		ctx, span, _ := jaeger.StartSpanAndLogFromContext(r.Context(), "Middleware:Inject")
-		defer span.End()
+type TraceparentHandler struct {
+	next  http.Handler
+	props propagation.TextMapPropagator
+}
 
-		h.ServeHTTP(w, r.WithContext(ctx))
+func Inject(h http.Handler) http.Handler {
+	return &TraceparentHandler{
+		next:  h,
+		props: otel.GetTextMapPropagator(),
 	}
-	return http.HandlerFunc(f)
+}
+
+func (h *TraceparentHandler) ServeHTTP(w http.ResponseWriter, req *http.Request) {
+	header := req.Header
+	h.props.Inject(req.Context(), propagation.HeaderCarrier(w.Header()))
+	remoteTraceIDBytes, _ := trace.TraceIDFromHex(header["X-B3-Traceid"][0])
+	remoteSpanIDBytes, _ := trace.SpanIDFromHex(header["X-B3-Spanid"][0])
+
+	parentSpanContext := trace.NewSpanContext(trace.SpanContextConfig{
+		TraceID: remoteTraceIDBytes,
+		SpanID:  remoteSpanIDBytes,
+	})
+
+	req = req.WithContext(trace.ContextWithSpanContext(req.Context(), parentSpanContext))
+
+	span := trace.SpanFromContext(req.Context())
+	defer span.End()
+
+	h.next.ServeHTTP(w, req)
 }

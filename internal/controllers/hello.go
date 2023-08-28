@@ -1,6 +1,8 @@
 package controllers
 
 import (
+	"fmt"
+
 	"github.com/ExcitingFrog/go-core-common/jaeger"
 	"github.com/ExcitingFrog/xuanwu/swagger/gen/models"
 	"github.com/ExcitingFrog/xuanwu/swagger/gen/server/operations"
@@ -11,6 +13,7 @@ func (c *Controllers) Hello(params operations.HelloParams) middleware.Responder 
 	ctx, span, logger := jaeger.StartSpanAndLogFromContext(params.HTTPRequest.Context(), "Controller:Hello")
 	defer span.End()
 
+	fmt.Println(ctx.Value("token"))
 	if err := c.service.Hello(ctx); err != nil {
 		logger.Error(err.Error())
 		return operations.NewHelloBadRequest().WithPayload(&models.ErrorResponse{
