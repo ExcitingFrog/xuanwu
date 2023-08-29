@@ -3,7 +3,7 @@ module github.com/ExcitingFrog/xuanwu
 go 1.20
 
 require (
-	github.com/ExcitingFrog/go-core-common v0.0.0-20230829070443-cb7b7d8ec8ae
+	github.com/ExcitingFrog/go-core-common v0.0.0-20230829094155-c388c5438bbf
 	github.com/ExcitingFrog/xuyu v0.0.0-20230822095603-e1d20124de6d
 	github.com/go-openapi/errors v0.20.4
 	github.com/go-openapi/loads v0.21.2
