@@ -24,10 +24,6 @@ func main() {
 	pprofProvider := pprof.NewPprof(nil)
 	stack.AddProvider(pprofProvider)
 
-	// init jaeger
-	// jaegerProvider := jaeger.NewJaeger(nil)
-	// stack.AddProvider(jaegerProvider)
-
 	// init utrace
 	traceProvider := utrace.NewUTrace(nil)
 	stack.AddProvider(traceProvider)
