@@ -1,7 +1,6 @@
 package server
 
 import (
-	"github.com/ExcitingFrog/go-core-common/jaeger"
 	"github.com/ExcitingFrog/go-core-common/log"
 	"github.com/ExcitingFrog/go-core-common/mongodb"
 	"github.com/ExcitingFrog/go-core-common/provider"
@@ -12,20 +11,23 @@ import (
 	"github.com/ExcitingFrog/xuanwu/swagger/gen/server"
 	"github.com/ExcitingFrog/xuanwu/swagger/gen/server/operations"
 	"github.com/go-openapi/loads"
+	"go.opentelemetry.io/contrib/instrumentation/net/http/otelhttp"
 )
 
 type Server struct {
 	provider.IProvider
 	server  *server.Server
 	mongodb *mongodb.MongoDB
-	jaeger  *jaeger.Jaeger
 }
 
-func NewServer(mongodb *mongodb.MongoDB, jaeger *jaeger.Jaeger) *Server {
+func NewServer(mongodb *mongodb.MongoDB) *Server {
 	return &Server{
 		mongodb: mongodb,
-		jaeger:  jaeger,
 	}
+}
+
+func (s *Server) Init() error {
+	return nil
 }
 
 func (s *Server) Close() error {
@@ -52,10 +54,13 @@ func (s *Server) Run() error {
 
 	xuanwuServices := services.NewService(repository, xuyu)
 	router := NewRouter(api, xuanwuServices)
+
 	router.RegisterRoutes()
 
 	server := server.NewServer(api)
 	server.Port = configs.GetConfig().Port
+
+	server.SetHandler(otelhttp.NewHandler(api.Serve(nil), "Middleware:Xuanwu"))
 
 	if err := server.Serve(); err != nil {
 		log.Logger().Error(err.Error())

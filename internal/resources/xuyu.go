@@ -3,12 +3,13 @@ package resources
 import (
 	"context"
 
-	"github.com/ExcitingFrog/go-core-common/jaeger"
 	"github.com/ExcitingFrog/go-core-common/log"
 	"github.com/ExcitingFrog/go-core-common/provider"
+	"github.com/ExcitingFrog/go-core-common/utrace"
 	"github.com/ExcitingFrog/xuanwu/configs"
 	pb "github.com/ExcitingFrog/xuyu/proto/gen/go/proto/api"
 	"go.opentelemetry.io/contrib/instrumentation/google.golang.org/grpc/otelgrpc"
+	"go.opentelemetry.io/otel/codes"
 	"google.golang.org/grpc"
 	"google.golang.org/grpc/credentials/insecure"
 )
@@ -45,12 +46,14 @@ func NewXuyu() (*Xuyu, error) {
 }
 
 func (x *Xuyu) Hello(ctx context.Context) error {
-	ctx, span, logger := jaeger.StartSpanAndLogFromContext(ctx, "Resources:Hello")
+	ctx, span, logger := utrace.StartSpanAndLogFromContext(ctx, "Resources:Hello")
 	defer span.End()
 
 	_, err := x.hello.Hello(ctx, &pb.HelloRequest{})
 	if err != nil {
 		logger.Error(err.Error())
+		span.RecordError(err)
+		span.SetStatus(codes.Error, err.Error())
 		return err
 	}
 	return nil

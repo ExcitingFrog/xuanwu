@@ -1,11 +1,11 @@
 package main
 
 import (
-	"github.com/ExcitingFrog/go-core-common/jaeger"
 	"github.com/ExcitingFrog/go-core-common/log"
 	"github.com/ExcitingFrog/go-core-common/mongodb"
 	"github.com/ExcitingFrog/go-core-common/pprof"
 	"github.com/ExcitingFrog/go-core-common/provider"
+	"github.com/ExcitingFrog/go-core-common/utrace"
 	"github.com/ExcitingFrog/xuanwu/internal/server"
 )
 
@@ -24,12 +24,12 @@ func main() {
 	pprofProvider := pprof.NewPprof(nil)
 	stack.AddProvider(pprofProvider)
 
-	// init jaeger
-	jaegerProvider := jaeger.NewJaeger(nil)
-	stack.AddProvider(jaegerProvider)
+	// init utrace
+	traceProvider := utrace.NewUTrace(nil)
+	stack.AddProvider(traceProvider)
 
 	// init service
-	serverProvider := server.NewServer(mongodbProvider, jaegerProvider)
+	serverProvider := server.NewServer(mongodbProvider)
 	stack.AddProvider(serverProvider)
 
 	stack.Run()
