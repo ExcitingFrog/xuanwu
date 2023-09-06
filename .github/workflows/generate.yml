@@ -18,7 +18,7 @@ jobs:
       with:
         go-version: '1.20'
 
-    - name: Install protoc
+    - name: Install swagger
       run: |
         download_url=$(curl -s https://api.github.com/repos/go-swagger/go-swagger/releases/latest | \
           jq -r '.assets[] | select(.name | contains("'"$(uname | tr '[:upper:]' '[:lower:]')"'_amd64")) | .browser_download_url')
