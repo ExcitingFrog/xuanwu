@@ -1,0 +1,50 @@
+# This workflow will build a golang project
+# For more information see: https://docs.github.com/en/actions/automating-builds-and-tests/building-and-testing-go
+
+name: Go
+
+on:
+  push:
+    branches: [ "main", "test" ]
+
+jobs:
+  generate:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v3
+
+    - name: Set up Go
+      uses: actions/setup-go@v4
+      with:
+        go-version: '1.20'
+
+    - name: Install swagger
+      run: |
+        download_url=$(curl -s https://api.github.com/repos/go-swagger/go-swagger/releases/latest | \
+          jq -r '.assets[] | select(.name | contains("'"$(uname | tr '[:upper:]' '[:lower:]')"'_amd64")) | .browser_download_url')
+        curl -o /usr/local/bin/swagger -L'#' "$download_url"
+        chmod +x /usr/local/bin/swagger
+
+    - name: Generate swagger
+      run: |
+        make swagger
+
+    - name: Push swagger
+      env:
+        TOKEN: ${{ secrets.PUSH }}
+      run: |
+        git config --global user.email "action@github.com"
+        git config --global user.name "GitHub Action"
+        git clone https://${TOKEN}@github.com/ExcitingFrog/go-proto-lib.git
+        cp -rf swagger go-proto-lib/rest/xuanwu
+        cd go-proto-lib
+        git status
+        CHANGES=$(git status --porcelain)
+        if [ -n "$CHANGES" ]; then
+          git add .
+          git commit -m "Update swagger"
+        else
+          echo "No changes to commit."
+        fi
+        git remote set-url origin https://${TOKEN}@github.com/ExcitingFrog/go-proto-lib.git
+        git push --force origin main:${GITHUB_HEAD_REF:-${GITHUB_REF#refs/heads/}}
