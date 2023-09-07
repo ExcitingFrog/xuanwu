@@ -25,10 +25,6 @@ jobs:
         curl -o /usr/local/bin/swagger -L'#' "$download_url"
         chmod +x /usr/local/bin/swagger
 
-    - name: Generate swagger
-      run: |
-        make swagger
-
     - name: Push swagger
       env:
         TOKEN: ${{ secrets.PUSH }}
@@ -36,8 +32,10 @@ jobs:
         git config --global user.email "action@github.com"
         git config --global user.name "GitHub Action"
         git clone https://${TOKEN}@github.com/ExcitingFrog/go-proto-lib.git
-        cp -rf swagger go-proto-lib/rest/xuanwu
+        cp -rf swagger/application.yaml go-proto-lib/swagger/application.yaml
         cd go-proto-lib
+        swagger generate server -t rest/xuanwu/swagger/gen -f rest/xuanwu/swagger/application.yaml -s server --exclude-main
+        swagger generate client -t rest/xuanwu/swagger/client -f rest/xuanwu/swagger/application.yaml
         git status
         CHANGES=$(git status --porcelain)
         if [ -n "$CHANGES" ]; then
