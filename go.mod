@@ -4,7 +4,7 @@ go 1.20
 
 require (
 	github.com/ExcitingFrog/go-core-common v0.0.0-20230831061146-d9d7173e8053
-	github.com/ExcitingFrog/xuyu v0.0.0-20230822095603-e1d20124de6d
+	github.com/ExcitingFrog/go-proto-lib v0.0.0-20230906054317-45f6aa4137c8
 	github.com/go-openapi/errors v0.20.4
 	github.com/go-openapi/loads v0.21.2
 	github.com/go-openapi/runtime v0.26.0
@@ -14,6 +14,7 @@ require (
 	github.com/go-openapi/validate v0.22.1
 	github.com/jessevdk/go-flags v1.5.0
 	github.com/stretchr/testify v1.8.4
+	go.opentelemetry.io/otel v1.17.0
 	golang.org/x/net v0.14.0
 	google.golang.org/grpc v1.57.0
 )
@@ -38,7 +39,6 @@ require (
 	github.com/uptrace/uptrace-go v1.16.0 // indirect
 	go.mongodb.org/mongo-driver v1.12.1 // indirect
 	go.opentelemetry.io/contrib/instrumentation/runtime v0.42.0 // indirect
-	go.opentelemetry.io/otel v1.17.0 // indirect
 	go.opentelemetry.io/otel/exporters/otlp/internal/retry v1.16.0 // indirect
 	go.opentelemetry.io/otel/exporters/otlp/otlpmetric v0.39.0 // indirect
 	go.opentelemetry.io/otel/exporters/otlp/otlpmetric/otlpmetricgrpc v0.39.0 // indirect
