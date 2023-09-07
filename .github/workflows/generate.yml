@@ -32,7 +32,8 @@ jobs:
         git config --global user.email "action@github.com"
         git config --global user.name "GitHub Action"
         git clone https://${TOKEN}@github.com/ExcitingFrog/go-proto-lib.git
-        cp -rf swagger/application.yaml go-proto-lib/swagger/application.yaml
+        rm go-proto-lib/rest/xuanwu/swagger/application.yaml
+        cp swagger/application.yaml go-proto-lib/rest/xuanwu/swagger/application.yaml
         cd go-proto-lib
         swagger generate server -t rest/xuanwu/swagger/gen -f rest/xuanwu/swagger/application.yaml -s server --exclude-main
         swagger generate client -t rest/xuanwu/swagger/client -f rest/xuanwu/swagger/application.yaml
