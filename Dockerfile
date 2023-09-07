@@ -15,6 +15,9 @@ WORKDIR /go/bin
 
 COPY --from=builder /go/src/workspace/main .
 
+RUN touch error.log
+RUN chmod 777 error.log
+
 USER 1001
 # run the binary
 CMD ["./main"]

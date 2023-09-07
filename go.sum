@@ -43,8 +43,8 @@ github.com/BurntSushi/toml v0.3.1/go.mod h1:xHWCNGjB5oqiDr8zfno3MHue2Ht5sIBksp03
 github.com/BurntSushi/xgb v0.0.0-20160522181843-27f122750802/go.mod h1:IVnqGOEym/WlBOVXweHU+Q+/VP0lqqI8lqeDx9IjBqo=
 github.com/ExcitingFrog/go-core-common v0.0.0-20230831061146-d9d7173e8053 h1:xcQ4Y9Ez/dmQjtZG2Ju1olrVfc0HA/kohzC4pGvFICM=
 github.com/ExcitingFrog/go-core-common v0.0.0-20230831061146-d9d7173e8053/go.mod h1:JVxE4cB9nHhcO45Bjrxok81BK5izgTRTHsZdPhkKZuo=
-github.com/ExcitingFrog/xuyu v0.0.0-20230822095603-e1d20124de6d h1:4hDfhNFQ8Vmnq+6fLF9Z/XW1LHoTZi2p33BPNzc/sNI=
-github.com/ExcitingFrog/xuyu v0.0.0-20230822095603-e1d20124de6d/go.mod h1:J06sQpbg2Bxbtolo6/HWcPLbhozKfe4xq17uQDypMvI=
+github.com/ExcitingFrog/go-proto-lib v0.0.0-20230906054317-45f6aa4137c8 h1:YRAAfJfoiKP3sdwZSc3/dPDjfTIUF7Hkyeviaj3vQT0=
+github.com/ExcitingFrog/go-proto-lib v0.0.0-20230906054317-45f6aa4137c8/go.mod h1:nlTsB9HWcIr+2D3qGLkF8og89nzQM9zqVKqsbez4MHI=
 github.com/OneOfOne/xxhash v1.2.2/go.mod h1:HSdplMjZKSmBqAxg5vPj2TmRDmfkzw+cTzAElWljhcU=
 github.com/PuerkitoBio/purell v1.1.1/go.mod h1:c11w/QuzBsJSee3cPx9rAFu61PvFxuPbtSwDGJws/X0=
 github.com/PuerkitoBio/urlesc v0.0.0-20170810143723-de5bf2ad4578/go.mod h1:uGdkoq3SwY9Y+13GIhn11/XLaGBb4BfwItxLd5jeuXE=
