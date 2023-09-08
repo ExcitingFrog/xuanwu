@@ -24,25 +24,6 @@ jobs:
       with:
         username: ${{ secrets.DOCKERHUB_USERNAME }}
         password: ${{ secrets.DOCKERHUB_PASSWORD }}
-    # -
-    #   name: Set Github Sha
-    #   id: vars
-    #   run: |
-    #     calculatedSha=$(git rev-parse --short ${{ github.sha }})
-    #     echo "::set-output name=short_sha::$calculatedSha"
-    # -
-    #   name: Set Branch
-    #   id: brach
-    #   run: |
-    #     calculatedSha=${GITHUB_HEAD_REF:-${GITHUB_REF#refs/heads/}}
-    #     echo "::set-output name=branch::$calculatedSha"
-    # -
-    #   name: Build and push
-    #   uses: docker/build-push-action@v4
-    #   with:
-    #     context: .
-    #     push: true
-    #     tags: wolifexingo/xuanwu:${{steps.brach.outputs.branch }}_${{steps.vars.outputs.short_sha }}
     -
       name: Set Environment Variables
       run: |
